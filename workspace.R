@@ -33,10 +33,17 @@ if (length(grep(".zip", doc$name)) > 0) {
 assign("actual", 0, envir = .GlobalEnv)
 task = ctx$task
 
+headers   <- ifelse(is.null(ctx$op.value('headers')), TRUE, as.logical(ctx$op.value('headers')))
+separator <- ifelse(is.null(ctx$op.value('Separator')), "Comma", ctx$op.value('Separator'))
+
 # import files in Tercen
 f.names %>%
-  lapply(function(filename){
-    data = read.csv(filename, header = TRUE, sep = ",")
+  lapply(function(filename) {
+    if (separator == "Comma") {
+      data <- read.csv(filename, header = headers, sep = ",")  
+    } else if (separator == "Tab"){
+      data <- read.table(filename, header = headers)  
+    }
     if (!is.null(task)) {
       # task is null when run from RStudio
       actual = get("actual",  envir = .GlobalEnv) + 1

@@ -3,5 +3,22 @@
   "description": "Import a csv file.",
   "tags": ["flowjo"],
   "authors": ["tercen"],
-  "urls": ["https://github.com/tercen/read_csv_operator"]
+  "urls": ["https://github.com/tercen/read_csv_operator"],
+  "properties": [
+    {
+      "kind": "BooleanProperty",
+      "name": "Headers",
+      "defaultValue": true,
+      "description": "A logical value indicating whether the file starts with a header line."
+    },
+    {
+    "kind": "EnumeratedProperty",
+    "name": "Separator",
+    "defaultValue": "Comma",
+    "description": "Type of the separator between values",
+	  "values": [
+      "Comma",
+      "Tab"
+      ]
+  }
 }
