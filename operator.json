@@ -1,6 +1,6 @@
 {
-  "name": "Read csv",
-  "description": "Import a csv file.",
+  "name": "CSV (multiple files)",
+  "description": "Imports many CSV files.",
   "tags": ["import","flowcytometry"],
   "authors": ["tercen"],
   "urls": ["https://github.com/tercen/read_csv_operator"],
