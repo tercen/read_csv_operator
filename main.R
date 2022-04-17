@@ -56,7 +56,7 @@ f.names %>%
   bind_rows() %>%
   mutate_if(is.logical, as.character) %>%
   mutate_if(is.integer, as.double) %>%
-  mutate(.ci = rep_len(0, nrow(.))) %>%
+  mutate(.ci = as.integer(rep_len(0, nrow(.)))) %>%
   mutate(filename_of_zip = rep_len(basename(filename), nrow(.))) %>%
   ctx$addNamespace() %>%
   ctx$save()
