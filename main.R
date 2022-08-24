@@ -3,7 +3,7 @@ library(dplyr)
 
 ctx = tercenCtx()
 
-if (!any(ctx$cnames == "documentId")) stop("Column factor documentId is required")
+if (!any(ctx$cnames == "documentId")) stop("Column factor documentId is required.")
 
 # extract files
 df <- ctx$cselect()
@@ -26,17 +26,20 @@ if (length(grep(".zip", doc$name)) > 0) {
 assign("actual", 0, envir = .GlobalEnv)
 task = ctx$task
 
-headers   <- ifelse(is.null(ctx$op.value('headers')), TRUE, as.boolean(ctx$op.value('headers')))
-separator <- ifelse(is.null(ctx$op.value('Separator')), "Comma", ctx$op.value('Separator'))
+headers <- ctx$op.value('Headers', as.boolean, TRUE)
+separator <- ctx$op.value('Separator', as.character, "Comma")
+force_merge <- ctx$op.value('Force', as.boolean, FALSE)
+
+separator <- case_when(
+  TRUE ~ ",",
+  separator == "Comma" ~ ",",
+  separator == "Tab" ~ "\t"
+)
 
 # import files in Tercen
-f.names %>%
+csv_list <- f.names %>%
   lapply(function(filename) {
-    if (separator == "Comma") {
-      data <- read.csv(filename, header = headers, sep = ",")  
-    } else if (separator == "Tab"){
-      data <- read.table(filename, header = headers)  
-    }
+    data <- read.csv(filename, header = headers, sep = separator)  
     if (!is.null(task)) {
       # task is null when run from RStudio
       actual = get("actual",  envir = .GlobalEnv) + 1
@@ -48,11 +51,18 @@ f.names %>%
       evt$message = paste0('processing csv file ' , filename)
       ctx$client$eventService$sendChannel(task$channelId, evt)
     } else {
-      cat('processing csv file ' , filename)
+      ctx$log(paste0('Processing CSV file: ' , filename))
     }
     data %>%
-    mutate(filename = rep_len(basename(filename), nrow(.)))
-  }) %>%
+      mutate(filename = rep_len(basename(filename), nrow(.)))
+  })
+
+same_colnames <- all(sapply(csv_list, identical, csv_list[[1]]))
+if(!same_colnames & !force_merge) {
+  stop("All files must have strictly identical column names or the 'Force' option should be set to true.")
+}
+
+csv_list %>%
   bind_rows() %>%
   mutate_if(is.logical, as.character) %>%
   mutate_if(is.integer, as.double) %>%

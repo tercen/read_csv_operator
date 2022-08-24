@@ -1,7 +1,7 @@
 {
   "name": "CSV (multiple files)",
-  "description": "Imports many CSV files in a zip file.",
-  "tags": ["import","flowcytometry"],
+  "description": "Imports multiple CSV files in a zip file.",
+  "tags": ["import"],
   "authors": ["tercen"],
   "urls": ["https://github.com/tercen/read_csv_operator"],
   "properties": [
@@ -16,9 +16,16 @@
     "name": "Separator",
     "defaultValue": "Comma",
     "description": "Type of the separator between values",
-	  "values": [
+    "values": [
       "Comma",
       "Tab"
       ]
-  }]
+    },
+    {
+      "kind": "BooleanProperty",
+      "name": "Force",
+      "defaultValue": false,
+      "description": "A logical value indicating whether the merging of different files should happen even if they do not have strictly identical columns."
+    }
+  ]
 }
