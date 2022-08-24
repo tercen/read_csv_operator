@@ -26,9 +26,9 @@ if (length(grep(".zip", doc$name)) > 0) {
 assign("actual", 0, envir = .GlobalEnv)
 task = ctx$task
 
-headers <- ctx$op.value('Headers', as.boolean, TRUE)
+headers <- ctx$op.value('Headers', as.logical, TRUE)
 separator <- ctx$op.value('Separator', as.character, "Comma")
-force_merge <- ctx$op.value('Force', as.boolean, FALSE)
+force_merge <- ctx$op.value('Force', as.logical, FALSE)
 
 separator <- case_when(
   TRUE ~ ",",
