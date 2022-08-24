@@ -28,11 +28,10 @@ assign("actual", 0, envir = .GlobalEnv)
 task = ctx$task
 
 headers <- ctx$op.value('Headers', as.logical, TRUE)
-separator <- ctx$op.value('Separator', as.character, "Comma")
+separator <- ctx$op.value('Separator', as.character, "Tab")
 force_merge <- ctx$op.value('Force', as.logical, FALSE)
 
 separator <- case_when(
-  TRUE ~ ",",
   separator == "Comma" ~ ",",
   separator == "Tab" ~ "\t"
 )
@@ -58,7 +57,7 @@ csv_list <- f.names %>%
       mutate(filename = rep_len(basename(filename), nrow(.)))
   })
 
-same_colnames <- all(sapply(csv_list, identical, csv_list[[1]]))
+same_colnames <- all(sapply(csv_list, function(x) identical(colnames(x), colnames(csv_list[[1]]))))
 if(!same_colnames & !force_merge) {
   stop("All files must have strictly identical column names or the 'Force' option should be set to true.")
 }
