@@ -67,6 +67,6 @@ csv_list %>%
   mutate_if(is.logical, as.character) %>%
   mutate_if(is.integer, as.double) %>%
   mutate(.ci = as.integer(rep_len(0, nrow(.)))) %>%
-  mutate(filename_of_zip = rep_len(basename(filename), nrow(.))) %>%
+  mutate(filename_of_zip = doc$name) %>%
   ctx$addNamespace() %>%
   ctx$save()
