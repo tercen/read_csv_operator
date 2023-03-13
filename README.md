@@ -2,7 +2,7 @@
 
 ##### Description
 
-`read_csv` operator transforms a csv file in to Tercen datasets. Tercen itself has a 'Delimited text' file import but you can't use that one in a workflow step.
+`read_csv` operator transforms a csv file in to Tercen datasets. Tercen itself has a 'Delimited text' file import but you can't use that one in a workflow step. 
 
 ##### Usage
 
