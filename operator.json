@@ -1,6 +1,6 @@
 {
   "name": "CSV (multiple files)",
-  "description": "Imports multiple CSV files in a zip file.",
+  "description": "Imports multiple CSV files in a ZIP file.",
   "tags": [
     "import"
   ],
@@ -23,7 +23,10 @@
       "name": "Separator",
       "defaultValue": "Comma",
       "description": "Type of the separator between values",
-      "values": ["Comma", "Tab"]
+      "values": [
+        "Comma",
+        "Tab"
+      ]
     },
     {
       "kind": "BooleanProperty",
