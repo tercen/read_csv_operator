@@ -1,31 +1,36 @@
 {
   "name": "CSV (multiple files)",
   "description": "Imports multiple CSV files in a zip file.",
-  "tags": ["import"],
-  "authors": ["tercen"],
-  "urls": ["https://github.com/tercen/read_csv_operator"],
+  "tags": [
+    "import"
+  ],
+  "authors": [
+    "tercen"
+  ],
+  "urls": [
+    "https://github.com/tercen/read_csv_operator"
+  ],
   "properties": [
     {
       "kind": "BooleanProperty",
       "name": "Headers",
-      "defaultValue": true,
-      "description": "A logical value indicating whether the file starts with a header line."
+      "defaultValue": "TRUE",
+      "description": "A logical value indicating whether the file starts with a header line.",
+      "values": {}
     },
     {
-    "kind": "EnumeratedProperty",
-    "name": "Separator",
-    "defaultValue": "Comma",
-    "description": "Type of the separator between values",
-    "values": [
-      "Comma",
-      "Tab"
-      ]
+      "kind": "EnumeratedProperty",
+      "name": "Separator",
+      "defaultValue": "Comma",
+      "description": "Type of the separator between values",
+      "values": ["Comma", "Tab"]
     },
     {
       "kind": "BooleanProperty",
       "name": "Force",
-      "defaultValue": false,
-      "description": "A logical value indicating whether the merging of different files should happen even if they do not have strictly identical columns."
+      "defaultValue": "FALSE",
+      "description": "A logical value indicating whether the merging of different files should happen even if they do not have strictly identical columns.",
+      "values": {}
     }
   ]
 }
