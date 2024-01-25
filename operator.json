@@ -14,7 +14,7 @@
     {
       "kind": "BooleanProperty",
       "name": "Headers",
-      "defaultValue": "TRUE",
+      "defaultValue": true,
       "description": "A logical value indicating whether the file starts with a header line.",
       "values": {}
     },
@@ -28,7 +28,7 @@
     {
       "kind": "BooleanProperty",
       "name": "Force",
-      "defaultValue": "FALSE",
+      "defaultValue": false,
       "description": "A logical value indicating whether the merging of different files should happen even if they do not have strictly identical columns.",
       "values": {}
     }
