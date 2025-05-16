@@ -1,7 +1,7 @@
 FROM tercen/runtime-r44:4.4.3-7
 
-ARG GITHUB_PAT
-ENV GITHUB_PAT=$GITHUB_PAT
+# ARG GITHUB_PAT
+# ENV GITHUB_PAT=$GITHUB_PAT
 
 COPY . /operator
 WORKDIR /operator
