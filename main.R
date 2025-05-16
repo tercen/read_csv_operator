@@ -1,5 +1,7 @@
-library(tercen)
+library(mtercen)
+library(teRcenHttp)
 library(tercenApi)
+library(tercen)
 library(dplyr)
 
 ctx = tercenCtx()
@@ -8,7 +10,6 @@ if (!any(ctx$cnames == "documentId")) stop("Column factor documentId is required
 
 # extract files
 df <- ctx$cselect()
-
 docId = df$documentId[1]
 doc = ctx$client$fileService$get(docId)
 filename = tempfile()
@@ -67,6 +68,7 @@ csv_list %>%
   mutate_if(is.logical, as.character) %>%
   mutate_if(is.integer, as.double) %>%
   mutate(.ci = as.integer(rep_len(0, nrow(.)))) %>%
+  mutate(rowId = as.integer(seq(0, nrow(.)-1))) %>%
   mutate(filename_of_zip = doc$name) %>%
   ctx$addNamespace() %>%
   ctx$save()
