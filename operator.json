@@ -10,7 +10,7 @@
   "urls": [
     "https://github.com/tercen/read_csv_operator"
   ],
-  "container":"ghcr.io/tercen/read_csv_operator:0.2.7",
+  "container":"ghcr.io/tercen/read_csv_operator:0.2.8",
   "properties": [
     {
       "kind": "BooleanProperty",
