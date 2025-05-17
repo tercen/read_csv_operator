@@ -13,5 +13,5 @@
   "inputDataUri": "input.csv",
   "outputDataUri": ["table1.csv", "table2.csv"],
   "columns": ["documentId"],
-  "skipColumns": ["ds0.filename_of_zip"]
+  "skipColumns": ["filename_of_zip"]
 }
