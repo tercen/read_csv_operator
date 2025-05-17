@@ -1,4 +1,4 @@
-"ds0.Observation","ds0.Variable","ds0.Measurement","ds0.filename",".ci","ds0.rowId","ds0.filename_of_zip"
+"Observation","Variable","Measurement","filename",".ci","rowId","filename_of_zip"
 "obs01","var01",0.841782798990607,"c03_simple_exp1.tsv",0,0,"tsv.zip"
 "obs01","var02",0.399706678697839,"c03_simple_exp1.tsv",0,1,"tsv.zip"
 "obs01","var03",0.734516402008012,"c03_simple_exp1.tsv",0,2,"tsv.zip"

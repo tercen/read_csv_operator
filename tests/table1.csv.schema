@@ -4,7 +4,7 @@
     {
       "kind": "ColumnSchema",
       "id": "de06e251-847a-4587-b369-6544588d0234",
-      "name": "ds0.Observation",
+      "name": "Observation",
       "type": "string",
       "nRows": 0,
       "size": -1,
@@ -19,7 +19,7 @@
     {
       "kind": "ColumnSchema",
       "id": "83c96abf-2768-40f7-a47d-99f38d5f0cbd",
-      "name": "ds0.Variable",
+      "name": "Variable",
       "type": "string",
       "nRows": 0,
       "size": -1,
@@ -34,7 +34,7 @@
     {
       "kind": "ColumnSchema",
       "id": "de5c2b7c-98ae-4963-96de-4c4acf6ae3c1",
-      "name": "ds0.Measurement",
+      "name": "Measurement",
       "type": "double",
       "nRows": 0,
       "size": -1,
@@ -49,7 +49,7 @@
     {
       "kind": "ColumnSchema",
       "id": "fc44e42a-bea0-40ac-8e34-17d02b3885dc",
-      "name": "ds0.filename",
+      "name": "filename",
       "type": "string",
       "nRows": 0,
       "size": -1,
@@ -79,7 +79,7 @@
     {
       "kind": "ColumnSchema",
       "id": "6c4513bb-cbd3-4af7-8ae3-780ab95dc3cc",
-      "name": "ds0.rowId",
+      "name": "rowId",
       "type": "int32",
       "nRows": 0,
       "size": -1,
@@ -94,7 +94,7 @@
     {
       "kind": "ColumnSchema",
       "id": "25c68407-06ba-49d6-b3f7-327c4deee698",
-      "name": "ds0.filename_of_zip",
+      "name": "filename_of_zip",
       "type": "string",
       "nRows": 0,
       "size": -1,

@@ -10,7 +10,7 @@
   "urls": [
     "https://github.com/tercen/read_csv_operator"
   ],
-  "container":"ghcr.io/tercen/read_csv_operator:0.2.8",
+  "container":"ghcr.io/tercen/read_csv_operator:0.3.0",
   "properties": [
     {
       "kind": "BooleanProperty",
@@ -35,6 +35,13 @@
       "defaultValue": false,
       "description": "A logical value indicating whether the merging of different files should happen even if they do not have strictly identical columns.",
       "values": {}
-    }
+    },
+        {
+      "kind": "BooleanProperty",
+      "name": "Add namespace",
+      "defaultValue": false,
+      "description": "A logical value indicating whether the factors name should be prefixed by the step namespace.",
+      "values": {}
+    },
   ]
 }

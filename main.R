@@ -31,6 +31,7 @@ task = ctx$task
 headers <- ctx$op.value('Headers', as.logical, TRUE)
 separator <- ctx$op.value('Separator', as.character, "Tab")
 force_merge <- ctx$op.value('Force', as.logical, FALSE)
+add_namespace <- ctx$op.value('Add namespace', as.logical, FALSE)
 
 separator <- case_when(
   separator == "Comma" ~ ",",
@@ -63,12 +64,16 @@ if(!same_colnames & !force_merge) {
   stop("All files must have strictly identical column names or the 'Force' option should be set to true.")
 }
 
-csv_list %>%
+result = csv_list %>%
   bind_rows() %>%
   mutate_if(is.logical, as.character) %>%
   mutate_if(is.integer, as.double) %>%
   mutate(.ci = as.integer(rep_len(0, nrow(.)))) %>%
   mutate(rowId = as.integer(seq(0, nrow(.)-1))) %>%
-  mutate(filename_of_zip = doc$name) %>%
-  ctx$addNamespace() %>%
-  ctx$save()
+  mutate(filename_of_zip = doc$name) 
+
+if (add_namespace) {
+  result = result %>% ctx$addNamespace()
+}
+
+result %>% ctx$save()
