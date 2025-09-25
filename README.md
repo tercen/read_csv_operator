@@ -18,6 +18,7 @@ Input projection|.
 Output relations|.
 ---|---
 `filename`          | character, the name of the csv file
+`*`                 | All columns from the imported CSV file(s)
 
 ##### Details
 

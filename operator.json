@@ -10,38 +10,64 @@
   "urls": [
     "https://github.com/tercen/read_csv_operator"
   ],
-  "container":"ghcr.io/tercen/read_csv_operator:0.3.2",
+  "container": "ghcr.io/tercen/read_csv_operator:1.0.0",
   "properties": [
     {
       "kind": "BooleanProperty",
       "name": "Headers",
       "defaultValue": true,
-      "description": "A logical value indicating whether the file starts with a header line.",
-      "values": {}
+      "description": "A logical value indicating whether the file starts with a header line."
     },
     {
       "kind": "EnumeratedProperty",
       "name": "Separator",
       "defaultValue": "Comma",
-      "description": "Type of the separator between values",
       "values": [
         "Comma",
         "Tab"
-      ]
+      ],
+      "description": "Type of the separator between values"
+    },
+    {
+      "kind": "StringProperty",
+      "name": "NA String",
+      "defaultValue": "",
+      "description": "A character vector of strings which are to be interpreted as NA values."
     },
     {
       "kind": "BooleanProperty",
       "name": "Force",
       "defaultValue": false,
-      "description": "A logical value indicating whether the merging of different files should happen even if they do not have strictly identical columns.",
-      "values": {}
+      "description": "A logical value indicating whether the merging of different files should happen even if they do not have strictly identical columns."
     },
     {
       "kind": "BooleanProperty",
       "name": "Add namespace",
       "defaultValue": false,
-      "description": "A logical value indicating whether the factors name should be prefixed by the step namespace.",
-      "values": {}
+      "description": "A logical value indicating whether the factors name should be prefixed by the step namespace."
     }
-  ]
+  ],
+  "operatorSpec": {
+    "kind": "OperatorSpec",
+    "ontologyUri": "https://tercen.com/_ontology/tercen",
+    "ontologyVersion": "0.0.1",
+    "inputSpecs": [
+      {
+        "kind": "CrosstabSpec",
+        "metaFactors": [
+          {
+            "kind": "MetaFactor",
+            "name": "Document ID",
+            "type": "string",
+            "description": "Document ID of the CSV file or ZIP archive",
+            "ontologyMapping": "document",
+            "crosstabMapping": "column",
+            "cardinality": "1",
+            "factors": []
+          }
+        ]
+      }
+    ],
+    "outputSpecs": []
+  }
 }

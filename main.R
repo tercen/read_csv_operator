@@ -1,7 +1,5 @@
-library(mtercen)
-library(teRcenHttp)
-library(tercenApi)
 library(tercen)
+library(data.table)
 library(dplyr)
 
 ctx = tercenCtx()
@@ -30,6 +28,7 @@ task = ctx$task
 
 headers <- ctx$op.value('Headers', as.logical, TRUE)
 separator <- ctx$op.value('Separator', as.character, "Tab")
+na_string <- ctx$op.value('NA String', as.character, "")
 force_merge <- ctx$op.value('Force', as.logical, FALSE)
 add_namespace <- ctx$op.value('Add namespace', as.logical, FALSE)
 
@@ -41,7 +40,12 @@ separator <- case_when(
 # import files in Tercen
 csv_list <- f.names %>%
   lapply(function(filename) {
-    data <- read.csv(filename, header = headers, sep = separator)  
+    data <- tryCatch({
+      fread(filename, header = headers, sep = separator, na.strings = na_string)
+    }, error = function(e) {
+      stop(paste0("Error reading file ", basename(filename), ": ", e$message))
+    })
+
     if (!is.null(task)) {
       # task is null when run from RStudio
       actual = get("actual",  envir = .GlobalEnv) + 1
@@ -50,7 +54,7 @@ csv_list <- f.names %>%
       evt$taskId = task$id
       evt$total = length(f.names)
       evt$actual = actual
-      evt$message = paste0('processing csv file ' , filename)
+      evt$message = paste0('Processing CSV file: ' , filename)
       ctx$client$eventService$sendChannel(task$channelId, evt)
     } else {
       ctx$log(paste0('Processing CSV file: ' , filename))
@@ -65,12 +69,12 @@ if(!same_colnames & !force_merge) {
 }
 
 result = csv_list %>%
-  bind_rows() %>%
-  mutate_if(is.logical, as.character) %>%
-  mutate_if(is.integer, as.double) %>%
-  mutate(.ci = as.integer(rep_len(0, nrow(.)))) %>%
-  mutate(rowId = as.integer(seq(0, nrow(.)-1))) %>%
-  mutate(filename_of_zip = doc$name) 
+  rbindlist(fill = force_merge) %>%
+  mutate_if(is.logical, as.character) %>% # Convert logical to character
+  mutate_if(is.integer, as.double) %>% # Convert integer to double
+  mutate(.ci = as.integer(rep_len(0, nrow(.)))) %>% # Add .ci column
+  mutate(rowId = as.integer(seq(0, nrow(.)-1))) %>% # Add rowId column
+  mutate(filename_of_zip = doc$name) # Add filename_of_zip column
 
 if (add_namespace) {
   result = result %>% ctx$addNamespace()

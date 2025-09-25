@@ -1,12 +1,9 @@
-FROM tercen/runtime-r44:4.4.3-7
-
-# ARG GITHUB_PAT
-# ENV GITHUB_PAT=$GITHUB_PAT
+FROM tercen/runtime-r44:4.4.3-11
 
 COPY . /operator
 WORKDIR /operator
 
-RUN R -e "renv::consent(provided = TRUE); renv::restore(confirm = FALSE)"
+# RUN R -e "renv::consent(provided = TRUE); renv::restore(confirm = FALSE)"
 
 ENV TERCEN_SERVICE_URI https://tercen.com
 ENV OPENBLAS_NUM_THREADS=1
