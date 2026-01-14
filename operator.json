@@ -59,10 +59,10 @@
             "kind": "MetaFactor",
             "name": "Document ID",
             "type": "string",
-            "description": "Document ID of the CSV file or ZIP archive",
+            "description": "Document ID(s) of CSV file(s) or ZIP archive(s)",
             "ontologyMapping": "document",
             "crosstabMapping": "column",
-            "cardinality": "1",
+            "cardinality": "1..n",
             "factors": []
           }
         ]
