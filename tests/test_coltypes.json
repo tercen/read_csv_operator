@@ -1,0 +1,22 @@
+{
+  "kind": "OperatorUnitTest",
+  "name": "test_coltypes",
+  "namespace": "ds0",
+  "propertyValues": [
+    {
+      "kind": "PropertyValue",
+      "name": "Separator",
+      "value": "Comma"
+    },
+    {
+      "kind": "PropertyValue",
+      "name": "Column types",
+      "value": "WellId=string"
+    }
+  ],
+  "inputFileUris": ["coltypes.zip"],
+  "inputDataUri": "input_coltypes.csv",
+  "outputDataUri": ["table_coltypes.csv"],
+  "columns": ["documentId"],
+  "skipColumns": ["filename_of_zip"]
+}

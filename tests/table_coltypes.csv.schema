@@ -1,0 +1,95 @@
+{
+  "kind": "TableSchema",
+  "columns": [
+    {
+      "kind": "ColumnSchema",
+      "id": "329a12c3-891f-4494-a59f-6a548985d7aa",
+      "name": "WellId",
+      "type": "string",
+      "nRows": 0,
+      "size": -1,
+      "metaData": {
+        "kind": "ColumnSchemaMetaData",
+        "sort": [],
+        "ascending": true,
+        "quartiles": [],
+        "properties": []
+      }
+    },
+    {
+      "kind": "ColumnSchema",
+      "id": "56cd72f8-e521-4066-9c92-eced7dc23cd5",
+      "name": "Value",
+      "type": "double",
+      "nRows": 0,
+      "size": -1,
+      "metaData": {
+        "kind": "ColumnSchemaMetaData",
+        "sort": [],
+        "ascending": true,
+        "quartiles": [],
+        "properties": []
+      }
+    },
+    {
+      "kind": "ColumnSchema",
+      "id": "3f9b2301-ef65-4b65-a6f0-e15a81f0b1f4",
+      "name": "filename",
+      "type": "string",
+      "nRows": 0,
+      "size": -1,
+      "metaData": {
+        "kind": "ColumnSchemaMetaData",
+        "sort": [],
+        "ascending": true,
+        "quartiles": [],
+        "properties": []
+      }
+    },
+    {
+      "kind": "ColumnSchema",
+      "id": "b7887b15-3469-472a-b558-7a0d1873f7e7",
+      "name": ".ci",
+      "type": "int32",
+      "nRows": 0,
+      "size": -1,
+      "metaData": {
+        "kind": "ColumnSchemaMetaData",
+        "sort": [],
+        "ascending": true,
+        "quartiles": [],
+        "properties": []
+      }
+    },
+    {
+      "kind": "ColumnSchema",
+      "id": "f77c52d5-ba3c-4c83-a132-2e952f4f47b6",
+      "name": "rowId",
+      "type": "int32",
+      "nRows": 0,
+      "size": -1,
+      "metaData": {
+        "kind": "ColumnSchemaMetaData",
+        "sort": [],
+        "ascending": true,
+        "quartiles": [],
+        "properties": []
+      }
+    },
+    {
+      "kind": "ColumnSchema",
+      "id": "1a63123e-e5e1-49be-9ffb-109c754ad4d9",
+      "name": "filename_of_zip",
+      "type": "string",
+      "nRows": 0,
+      "size": -1,
+      "metaData": {
+        "kind": "ColumnSchemaMetaData",
+        "sort": [],
+        "ascending": true,
+        "quartiles": [],
+        "properties": []
+      }
+    }
+  ]
+}
