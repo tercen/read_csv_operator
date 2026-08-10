@@ -16,7 +16,7 @@
   ],
   "inputFileUris": ["coltypes.zip"],
   "inputDataUri": "input_coltypes.csv",
-  "outputDataUri": ["table_coltypes.csv"],
+  "outputDataUri": ["table_coltypes.csv", "table2_coltypes.csv"],
   "columns": ["documentId"],
   "skipColumns": ["filename_of_zip"]
 }
