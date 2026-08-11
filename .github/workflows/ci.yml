@@ -24,11 +24,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       # Tercen resolves a tag-less `container` in operator.json by appending the
-      # peeled COMMIT SHA of the installed ref — the image must carry that exact
-      # tag. rev-parse HEAD^{commit} is annotated-tag safe.
+      # SHORT (7-char) commit SHA of the installed ref, extracted from the GitHub
+      # zipball directory name (git_operator.dart) — the image must carry that
+      # exact tag. Full SHA pushed too for future-proofing.
       - name: Resolve commit SHA
         id: commit
-        run: echo "sha=$(git rev-parse 'HEAD^{commit}')" >> "$GITHUB_OUTPUT"
+        run: |
+          echo "sha=$(git rev-parse 'HEAD^{commit}')" >> "$GITHUB_OUTPUT"
+          echo "sha_short=$(git rev-parse --short=7 'HEAD^{commit}')" >> "$GITHUB_OUTPUT"
       # Uses the `docker/login-action` action to log in to the Container registry registry using the account and password that will publish the packages. Once published, the packages are scoped to the account defined here.
       - name: Log in to the Container registry
         uses: docker/login-action@v3.3.0
@@ -47,6 +50,7 @@ jobs:
           tags: |
             type=ref,event=branch
             type=raw,value=${{ steps.commit.outputs.sha }}
+            type=raw,value=${{ steps.commit.outputs.sha_short }}
       # This step uses the `docker/build-push-action` action to build the image, based on your repository's `Dockerfile`. If the build succeeds, it pushes the image to GitHub Packages.
       # It uses the `context` parameter to define the build's context as the set of files located in the specified path. For more information, see "[Usage](https://github.com/docker/build-push-action#usage)" in the README of the `docker/build-push-action` repository.
       # It uses the `tags` and `labels` parameters to tag and label the image with the output from the "meta" step.
